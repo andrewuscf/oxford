@@ -9,7 +9,7 @@
       #map-canvas { height: 500px; margin: 0; padding: 0; width: 1000px;}
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGlhMn2B8ykDtC3koBwD1a5LLdi41a06E">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw5SDzT7Ik7tMv11jKyIzTXu0KMjW0qPk">
     </script>
     <script type="text/javascript">
       function initialize() {
@@ -21,11 +21,6 @@
             mapOptions);
 
       {% for company in companies %}
-          var contentString = '<div id="content">'+
-                  '<h1 id="firstHeading" class="firstHeading">{{ company.name }}</h1>'+ '</div>';
-
-          var infowindow = new google.maps.InfoWindow({content: contentString});
-
           var marker = new google.maps.Marker({
                 position: new google.maps.LatLng({{ company.latitude }},{{ company.longitude }}),
                 map: map,
