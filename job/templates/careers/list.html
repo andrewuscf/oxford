@@ -1,0 +1,12 @@
+{% extends "careers/base.html" %}
+
+
+{% block content %}
+
+{% for position in positions %}
+	<h3>{{ position.title }}</h3>
+	{{ position.description }}
+	<hr />
+{% endfor %}
+
+{% endblock %}

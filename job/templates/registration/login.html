@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sign In
+{% endblock title %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2>you in!</h2>
+        {% else %}
+        <div class="jumbotron col-md-4 col-md-offset-4">
+                <h2 class="text-muted">Log In</h2>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" value="Log in">
+            </form>
+
+            <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+            <p>Forgot Password? <a href="{% url 'password_reset' %}">Reset</a></p>
+        </div>
+    {% endif %}
+{% endblock %}

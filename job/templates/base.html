@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/stylesheet.css" %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+</head>
+<body>
+<div id="wrap">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <ul class="nav navbar-nav">
+            {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}">{{ user.username }}'s Profile</a>
+                {% else %}
+                    <div></div>
+                {% endif %}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% if user.is_staff %}
+                            <li><a href="{% url 'admin:index' %}">{{ user.username }}'s Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+              </ul>
+        </div><!-- /.navbar-collapse -->
+
+</nav>
+
+<div class="container">
+{% block content %}
+{% endblock content %}
+</div>
+</div>
+
+
+{#<footer class="navbar-default container-fluid text-center">Copyright &copy; Oxford HealthCare</footer>#}
+</body>
+</html>
