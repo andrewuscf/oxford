@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from job.models import Place, Worker, JobPosition
+from job.models import Place, Worker, JobPosition, HealthCareCompany
 
 
 class PlaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Place
-        fields = ('name', 'address', 'city', 'state', 'country', 'zip_code')
+        fields = ('title', 'location')
 
 
 class WorkerSerializer(serializers.ModelSerializer):
@@ -16,3 +16,8 @@ class WorkerSerializer(serializers.ModelSerializer):
 class JobPositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobPosition
+
+
+class CompaniesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthCareCompany

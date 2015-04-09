@@ -1,7 +1,8 @@
 import csv
 import time
 from models import HealthCareCompany
-csv_filepathname="/Users/Andrew/projects/oxford/job/new.csv"
+# csv_filepathname="/home/oxfordadmin/oxford/job/companies.csv"
+csv_filepathname="/Users/Andrew/projects/oxford/job/companies.csv"
 dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 
 for row in dataReader:
@@ -19,9 +20,7 @@ for row in dataReader:
         company.license_type = row[9]
         company.license_category = row[10]
         company.link = row[11]
-        company.full_address = row[12]
+        company.full_address = row[2] + ', ' + row[3] + ', ' + row[4]
         company.npi = row[13]
         company.cahsah = row[14]
-        company.latitude = row[15]
-        company.longitude = row[16]
         company.save()

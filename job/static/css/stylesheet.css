@@ -4,3 +4,18 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+div[ng-controller] {
+  position: relative;
+}
+div[ng-controller] #panel {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  margin-left: -180px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}

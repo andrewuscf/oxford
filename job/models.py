@@ -137,18 +137,18 @@ class HealthCareCompany(models.Model):
     class Meta:
         ordering = ['name']
 
-    # def location(self):
-    #     if self.full_address:
-    #         try:
-    #             geocoder = GoogleV3(api_key= GOOGLE_API_KEY)
-    #             location = geocoder.geocode(self.full_address)
-    #             self.latitude = location.latitude
-    #             self.longitude = location.longitude
-    #             print location
-    #         except:
-    #             print 'google api not working'
-    #
-    #
-    # def save(self, *args, **kwargs):
-    #     self.location()
-    #     super(HealthCareCompany, self).save(*args, **kwargs)
+    def location(self):
+        if self.full_address:
+            try:
+                geocoder = GoogleV3(api_key= GOOGLE_API_KEY)
+                location = geocoder.geocode(self.full_address)
+                self.latitude = location.latitude
+                self.longitude = location.longitude
+                print location
+            except:
+                print 'google api not working'
+
+
+    def save(self, *args, **kwargs):
+        self.location()
+        super(HealthCareCompany, self).save(*args, **kwargs)

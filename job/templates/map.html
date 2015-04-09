@@ -5,39 +5,24 @@
 {% endblock title %}
 
 {% block content %}
-    <style type="text/css">
-      #map-canvas { height: 500px; margin: 0; padding: 0; width: 1000px;}
-    </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw5SDzT7Ik7tMv11jKyIzTXu0KMjW0qPk">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
-          var mapOptions = {
-          center: { lat: 34.156459, lng: -118.827240},
-          zoom: 4
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-
-      {% for company in companies %}
-          var marker = new google.maps.Marker({
-                position: new google.maps.LatLng({{ company.latitude }},{{ company.longitude }}),
-                map: map,
-                title:'{{ company.name }}'
-          });
-
-{#            google.maps.event.addListener(#}
-{#                    marker, 'click', function() {#}
-{#                        infowindow.open(map,marker);#}
-{#                    });#}
-
-      {% endfor %}
-
-      }
-
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
-<div id="map-canvas"></div>
+    {% verbatim %}
+    <div ng-controller="marker">
+    <h2>Search:</h2>
+        <input type="text" ng-model="search.$" style="margin-bottom: 20px">
+      <map center="37.7866983, -122.4183997" zoom="4">
+          <div ng-repeat="marker in markers | filter:search ">
+            <marker position="{{ marker.latitude }},{{ marker.longitude }}" title="{{ marker.name }}" on-click="showInfoWindow(event, 'bar')"></marker>
+              <info-window id="bar" visible-on-marker="foo">
+                <div ng-non-bindable="">
+                  <div id="siteNotice"></div>
+                  <h1 id="firstHeading" class="firstHeading">{{ marker.name }}</h1>
+                  <div id="bodyContent">
+                    <p><b>{{ marker.address }}</b></p>
+                  </div>
+                </div>
+              </info-window>
+          </div>
+      </map>
+    </div>
+    {% endverbatim %}
 {% endblock %}
