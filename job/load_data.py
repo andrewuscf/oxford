@@ -2,7 +2,7 @@ import csv
 import time
 from models import HealthCareCompany
 # csv_filepathname="/home/oxfordadmin/oxford/job/companies.csv"
-csv_filepathname="/home/oxfordadmin/oxford/job/companies.csv"
+csv_filepathname="/home/oxfordadmin/oxford/job/test.csv"
 dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 
 for row in dataReader:
@@ -23,6 +23,4 @@ for row in dataReader:
         company.full_address = row[2] + ', ' + row[3] + ', ' + row[4]
         company.npi = row[13]
         company.cahsah = row[14]
-        company.latitude = row[15]
-        company.longitude = row[16]
         company.save()
