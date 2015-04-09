@@ -121,7 +121,7 @@ class HealthCareCompany(models.Model):
     county_code = models.CharField(max_length=50)
     county_name = models.CharField(max_length=60)
     status = models.CharField(max_length=20)
-    status_date = models.DateField()
+    status_date = models.CharField(max_length=15)
     license_type = models.CharField(max_length=150)
     license_category = models.CharField(max_length=60)
     link = models.URLField()
