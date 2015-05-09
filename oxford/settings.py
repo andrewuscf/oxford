@@ -106,7 +106,7 @@ AUTH_USER_MODEL = 'job.Worker'
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
+STATIC_URL = '/job/static/'
 
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'job/templates')]

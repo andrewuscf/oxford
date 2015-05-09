@@ -19,3 +19,28 @@ div[ng-controller] #panel {
   padding: 5px;
   border: 1px solid #999;
 }
+
+.angular-google-map-container {
+    /*position: absolute;*/
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 400px;
+}
+
+
+
+#map {
+    height:420px;
+    width:600px;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
+}

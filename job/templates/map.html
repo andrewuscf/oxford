@@ -6,23 +6,33 @@
 
 {% block content %}
     {% verbatim %}
-    <div ng-controller="marker">
-    <h2>Search:</h2>
-        <input type="text" ng-model="search.$" style="margin-bottom: 20px">
-      <map center="37.7866983, -122.4183997" zoom="4">
-          <div ng-repeat="marker in markers | filter:search ">
-            <marker position="{{ marker.latitude }},{{ marker.longitude }}" title="{{ marker.name }}" on-click="showInfoWindow(event, 'bar')"></marker>
-              <info-window id="bar" visible-on-marker="foo">
-                <div ng-non-bindable="">
-                  <div id="siteNotice"></div>
-                  <h1 id="firstHeading" class="firstHeading">{{ marker.name }}</h1>
-                  <div id="bodyContent">
-                    <p><b>{{ marker.address }}</b></p>
-                  </div>
-                </div>
-              </info-window>
-          </div>
-      </map>
+    <!--
+    <div ng-controller="MainCtrl">
+
+    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="false"
+                            options="map.options" events="map.events" control="googlemap" class="angular-google-map-container">
+
+        <ui-gmap-window coords="MapOptions.markers.selected.coords"
+                        show="windowOptions.show" options="windowOptions" closeClick="closeClick()" ng-model="MapOptions.markers">
+                    <p models="MapOptions.markers" >{{ MapOptions.markers.selected.data }}</p>
+            </ui-gmap-window>
+
+         		<ui-gmap-markers models="markers" idkey="markers.id" coords="'coords'"
+                             click="onClick" events="markers.events" doCluster="true">
+
+
+
+        		</ui-gmap-markers>
+
+         	</ui-gmap-google-map>
+    <p ng-model="MapOptions.markers" >{{ MapOptions.markers.selected.data }}</p>
+    </div>
+    -->
+    <div ng-controller="mapController">
+    <div id="map"></div>
+        <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+             <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+        </div>
     </div>
     {% endverbatim %}
 {% endblock %}

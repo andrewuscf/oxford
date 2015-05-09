@@ -4,7 +4,7 @@ from django.db import models
 
 
 class PublishableModelManager(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         return super(PublishableModelManager, self).get_query_set().filter((
             models.Q(published=True)
         ) & (

@@ -140,7 +140,7 @@ class HealthCareCompany(models.Model):
     def location(self):
         if self.full_address:
             try:
-                geocoder = GoogleV3(api_key= GOOGLE_API_KEY)
+                geocoder = GoogleV3(api_key=GOOGLE_API_KEY)
                 location = geocoder.geocode(self.full_address)
                 self.latitude = location.latitude
                 self.longitude = location.longitude

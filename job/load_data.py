@@ -1,8 +1,7 @@
 import csv
-import time
-from models import HealthCareCompany
-# csv_filepathname="/home/oxfordadmin/oxford/job/companies.csv"
-csv_filepathname="/home/oxfordadmin/oxford/job/test.csv"
+from job.models import HealthCareCompany
+
+csv_filepathname="/Users/Andrew/projects/oxford/job/test.csv"
 dataReader = csv.reader(open(csv_filepathname), delimiter=',', quotechar='"')
 
 for row in dataReader:
@@ -21,6 +20,12 @@ for row in dataReader:
         company.license_category = row[10]
         company.link = row[11]
         company.full_address = row[2] + ', ' + row[3] + ', ' + row[4]
-        company.npi = row[13]
-        company.cahsah = row[14]
         company.save()
+
+companies = HealthCareCompany.objects.all().distinct('latitude', 'longitude')
+for company in companies:
+    print company
+
+for lat in HealthCareCompany.objects.values_list('latitude', flat=True).distinct():
+    company = HealthCareCompany.objects.filter(pk__in=HealthCareCompany.objects.filter(latitude=lat).values_list('id', flat=True))
+    print company

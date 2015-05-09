@@ -29,4 +29,4 @@ class CompaniesViewSet(viewsets.ModelViewSet):
     queryset = HealthCareCompany.objects.all()
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'city', 'zipcode')
-    # paginate_by = 20
+    # paginate_by = 30

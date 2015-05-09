@@ -1,2 +1,1 @@
-var oxford = angular.module('oxford', ['ngMap']);
-
+var oxford = angular.module('oxford', []);
