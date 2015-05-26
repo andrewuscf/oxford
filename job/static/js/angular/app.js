@@ -1,1 +1,1 @@
-var oxford = angular.module('oxford', []);
+var oxford = angular.module('oxford', ['ui.bootstrap']);

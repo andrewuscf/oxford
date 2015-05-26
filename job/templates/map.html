@@ -6,28 +6,87 @@
 
 {% block content %}
     {% verbatim %}
-    <!--
-    <div ng-controller="MainCtrl">
-
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="false"
-                            options="map.options" events="map.events" control="googlemap" class="angular-google-map-container">
-
-        <ui-gmap-window coords="MapOptions.markers.selected.coords"
-                        show="windowOptions.show" options="windowOptions" closeClick="closeClick()" ng-model="MapOptions.markers">
-                    <p models="MapOptions.markers" >{{ MapOptions.markers.selected.data }}</p>
-            </ui-gmap-window>
-
-         		<ui-gmap-markers models="markers" idkey="markers.id" coords="'coords'"
-                             click="onClick" events="markers.events" doCluster="true">
+<div class="row" ng-controller="listController">
+    <div class="col-sm-7">
+        <div class="col-sm-12">
 
 
+            <!--accordion in angularjs directive-->
+            <accordion close-others="oneAtATime" ng-repeat="userinfo in markers">
+                <accordion-group ng-click="openInfoWindow($event, userinfo)">
+                    <accordion-heading>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="{{ userinfo.profilePhoto }}" class="img-responsive" style="height: 70px; width: 70px">
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row" style="font-weight: bold">
+                                    <div class="col-md-8">
+                                        {{ userinfo.username| capitalize }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        Common: {{ userinfo.id }}
+                                    </div>
+                                </div>
+                                <div class="row" style="font-weight: 200">
+                                    <div class="col-md-12">
+                                    {{ userinfo.bio| capitalize }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </accordion-heading>
 
-        		</ui-gmap-markers>
 
-         	</ui-gmap-google-map>
-    <p ng-model="MapOptions.markers" >{{ MapOptions.markers.selected.data }}</p>
+                    <div class="mygrid-wrapper-div">
+                            <table class="table">
+                                <tbody>
+                                <tr ng-show="userinfo.interests != null">
+                                    <td>Intrests:</td>
+                                    <td ng-repeat="(key,val) in userinfo.interests" class="text-center">
+                                        <div class="interest-name">{{ key }}</div>
+                                            <img class="interest-photo" src="{{ val }}" alt=""/>
+                                    </td>
+                                </tr>
+                                <tr ng-show="userinfo.music != null">
+                                    <td>Artists:</td>
+                                    <td ng-repeat="(key,val) in userinfo.music" class="text-center">
+                                       <div class="interest-name">{{ key }}</div>
+                                        <img class="interest-image" src="{{ val }}" alt=""/>
+                                    </td>
+                                </tr>
+                                <tr ng-show="userinfo.subs != null">
+                                    <td>Subscriptions:</td>
+                                    <td ng-repeat="(key,val) in userinfo.subs" class="text-center">
+                                        <div class="interest-name">{{ key }}</div>
+                                        <img class="interest-photo" src="{{ val }}" alt=""/>
+                                    </td>
+                                </tr>
+                                <tr ng-show="userinfo.photos != null">
+                                    <td>Photos:</td>
+                                    <td ng-repeat="(key,val) in userinfo.photos">
+                                        <img class="interest-photo" src="{{ val }}" alt="" style="margin-left: 30px"/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                           </table>
+                    </div>
+
+                </accordion-group>
+          </accordion>
+
+        </div>
     </div>
-    -->
+
+    <!--map-->
+      <div class="col-sm-2 col-md-offset-1">
+          <div class="row">
+                <div class="col col-sm-5"><h2>People near you</h2></div>
+                    <div id="map"></div>
+        	    <hr>
+          </div>
+      </div>
+</div>
     <div ng-controller="mapController">
     <div id="map"></div>
         <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
